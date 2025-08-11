@@ -22,6 +22,47 @@
 - **Multi-source Support**: Handle leads from Facebook, Google, website, walk-ins, etc.
 - **Bulk Operations**: Onboard new locations at scale with automated setup
 
+## Documentation
+
+- **[Part 1: Technical Architecture](docs/1.%20technical-architecture.md)**
+- **[Part 2: The Scale Challenge Solution](docs/2.%20scaling-solution.md)**
+- **[Technical Decisions & Trade-offs](docs/3.%20technical-decisions.md)**
+
+## Architecture Overview
+
+```mermaid
+flowchart LR
+    A[Lead Sources<br/>FB/Google/Web] --> B[GHL Webhooks<br/>Master Account]
+    B --> C[Routing Engine<br/>Capacity Mgmt]
+    C --> D[25-100 Gyms<br/>Local Teams]
+    D --> E[Sub-Accounts<br/>Automations]
+    E --> F[Notifications<br/>SMS/Email]
+```
+
+## API Endpoints
+
+### Core Operations
+
+- `POST /api/webhooks/ghl` - Process GHL webhook events
+- `GET /api/locations` - List all locations with capacity
+- `POST /api/routing/assign` - Manually assign lead to location
+- `GET /api/analytics/dashboard` - Real-time performance metrics
+
+### Management
+
+- `POST /api/bulk/locations` - Bulk location onboarding
+- `GET /api/capacity/overview` - System-wide capacity status
+- `GET /api/reports/conversion` - Conversion rate analysis
+- `GET /health` - System health check
+
+## Performance Metrics
+
+- **Lead Processing**: 500+ leads/minute
+- **Response Time**: <200ms for routing decisions  
+- **Uptime**: 99.9% availability target
+- **Scalability**: Supports 100+ locations, 10,000+ leads/day
+
+
 ## Quick Start
 
 ### Prerequisites
@@ -84,43 +125,6 @@ curl -X POST http://localhost:3000/api/webhooks/ghl \
   }'
 ```
 
-## Architecture Overview
-
-```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Lead Sources  │───▶│  GHL Webhooks    │───▶│  Routing Engine │
-│ FB/Google/Web   │    │  Master Account  │    │  Capacity Mgmt  │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                                                         │
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Notifications │◀───│   Sub-Accounts   │◀───│   25-100 Gyms   │
-│   SMS/Email     │    │   Automations    │    │   Local Teams   │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-```
-
-## API Endpoints
-
-### Core Operations
-
-- `POST /api/webhooks/ghl` - Process GHL webhook events
-- `GET /api/locations` - List all locations with capacity
-- `POST /api/routing/assign` - Manually assign lead to location
-- `GET /api/analytics/dashboard` - Real-time performance metrics
-
-### Management
-
-- `POST /api/bulk/locations` - Bulk location onboarding
-- `GET /api/capacity/overview` - System-wide capacity status
-- `GET /api/reports/conversion` - Conversion rate analysis
-- `GET /health` - System health check
-
-## Performance Metrics
-
-- **Lead Processing**: 500+ leads/minute
-- **Response Time**: <200ms for routing decisions  
-- **Uptime**: 99.9% availability target
-- **Scalability**: Supports 100+ locations, 10,000+ leads/day
-
 ## Deployment Options
 
 ### Development
@@ -146,19 +150,43 @@ docker-compose -f docker-compose.prod.yml up -d
 ### Required Environment Variables
 
 ```env
-# GHL Integration
-GHL_API_KEY=your_ghl_api_key
-GHL_WEBHOOK_SECRET=your_webhook_secret
-GHL_MASTER_ACCOUNT_ID=your_account_id
+# Server Configuration
+PORT=3000
+NODE_ENV=development
 
-# External Services  
-GOOGLE_MAPS_API_KEY=your_maps_key
-TWILIO_ACCOUNT_SID=your_twilio_sid
-SENDGRID_API_KEY=your_sendgrid_key
+# Database Configuration  
+DATABASE_URL=./database/ghl_system.sqlite
+DB_CLIENT=sqlite3
 
-# Database
-DATABASE_URL=postgresql://user:pass@localhost:5432/ghl_franchise
-REDIS_URL=redis://localhost:6379
+# GHL API Configuration
+GHL_APP_CLIENT_ID=value_client_id_here
+GHL_APP_CLIENT_SECRET=value_client_secret_here
+GHL_APP_SSO_KEY=value_sso_key_here
+GHL_API_DOMAIN=https://services.leadconnectorhq.com
+GHL_WEBHOOK_SECRET=value_webhook_secret_here
+
+# External Services
+GOOGLE_MAPS_API_KEY=value_google_maps_key_here
+TWILIO_ACCOUNT_SID=value_twilio_sid_here
+TWILIO_AUTH_TOKEN=value_twilio_token_here
+TWILIO_PHONE_NUMBER=+1234567890
+
+# Admin Notifications
+ADMIN_EMAIL=admin@yourdomain.com
+ADMIN_PHONE=+1234567890
+SLACK_WEBHOOK_URL=https://hooks.slack.com/your/webhook/url
+
+# Logging
+LOG_LEVEL=info
+LOG_FILE_PATH=./logs/app.log
+
+# Security
+JWT_SECRET=value_jwt_secret_here
+ENCRYPTION_KEY=value_encryption_key_here
+
+# Performance
+MAX_CONCURRENT_WEBHOOKS=10
+WEBHOOK_TIMEOUT=30000
 ```
 
 ### Optional Integrations
@@ -167,14 +195,6 @@ REDIS_URL=redis://localhost:6379
 - **Payment Processing**: Stripe, PayPal
 - **CRM Sync**: Salesforce, HubSpot
 - **Analytics**: Google Analytics, Mixpanel
-
-## Documentation
-
-- **[Technical Architecture](docs/technical-architecture.md)** - Detailed system design
-- **[Scaling Strategy](docs/scaling-strategy.md)** - 25→100 location growth plan  
-- **[API Reference](docs/api-reference.md)** - Complete endpoint documentation
-- **[Deployment Guide](docs/deployment-guide.md)** - Production setup instructions
-- **[Challenge Response](docs/challenge-response.md)** - Full GHL developer challenge solution
 
 ## Testing
 
