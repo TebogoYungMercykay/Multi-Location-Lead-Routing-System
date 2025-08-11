@@ -20,7 +20,8 @@ fi
 # Initialize database
 echo " > Setting up database..."
 npm run migrate 2>/dev/null || echo " > Migration not needed"
-npm run seed
+npm run db:init
+npm run db:verify
 
 echo "Setup complete!"
 echo ""
