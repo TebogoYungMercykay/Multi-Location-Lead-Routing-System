@@ -1,0 +1,37 @@
+{
+  "name": "ghl-multi-location-system",
+  "version": "1.0.0",
+  "description": "GHL Multi-Location Lead Routing System",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest",
+    "migrate": "node src/database/migrate.js",
+    "seed": "node src/database/seed.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "dotenv": "^16.3.1",
+    "axios": "^1.5.0",
+    "knex": "^2.5.1",
+    "objection": "^3.1.1",
+    "sqlite3": "^5.1.6",
+    "node-geocoder": "^4.2.0",
+    "winston": "^3.10.0",
+    "crypto": "^1.0.1",
+    "joi": "^17.10.1",
+    "node-cron": "^3.0.2",
+    "twilio": "^4.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.6.4",
+    "supertest": "^6.3.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
