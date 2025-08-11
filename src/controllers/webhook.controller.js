@@ -1,4 +1,4 @@
-const webhookService = require('./webhook.service');
+const webhookService = require('../services/webhook.service');
 const routingService = require('../services/routing.service');
 const analyticsService = require('../services/analytics.service');
 const logger = require('../utils/logger');
