@@ -1,4 +1,3 @@
-# docker-compose.yml - For containerized deployment
 version: '3.8'
 
 services:

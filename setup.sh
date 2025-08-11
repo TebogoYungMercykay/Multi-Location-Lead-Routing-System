@@ -1,5 +1,4 @@
 #!/bin/bash
-# setup.sh - Initial project setup script
 
 echo "🚀 Setting up GHL Multi-Location System..."
 

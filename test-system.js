@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-// test-system.js - Complete system test script
 const axios = require('axios');
 const readline = require('readline');
 
@@ -17,7 +16,7 @@ class SystemTester {
   }
 
   async runAllTests() {
-    console.log('🧪 Starting GHL System Tests...\n');
+    console.log(' Starting GHL System Tests...\n');
 
     const tests = [
       { name: 'Health Check', fn: this.testHealthCheck },
@@ -38,13 +37,13 @@ class SystemTester {
 
   async runTest(name, testFn) {
     try {
-      console.log(`🔍 Testing: ${name}`);
+      console.log(` Testing: ${name}`);
       await testFn();
       this.testResults.push({ name, status: 'PASS', error: null });
-      console.log(`✅ ${name}: PASSED\n`);
+      console.log(` ${name}: PASSED\n`);
     } catch (error) {
       this.testResults.push({ name, status: 'FAIL', error: error.message });
-      console.log(`❌ ${name}: FAILED - ${error.message}\n`);
+      console.log(` ${name}: FAILED - ${error.message}\n`);
     }
   }
 
@@ -220,15 +219,14 @@ class SystemTester {
   }
 
   printResults() {
-    console.log('\n📊 Test Results Summary:');
+    console.log('\n Test Results Summary:');
     console.log('==========================');
     
     const passed = this.testResults.filter(r => r.status === 'PASS').length;
     const failed = this.testResults.filter(r => r.status === 'FAIL').length;
     
     this.testResults.forEach(result => {
-      const icon = result.status === 'PASS' ? '✅' : '❌';
-      console.log(`${icon} ${result.name}: ${result.status}`);
+      console.log(`${result.name}: ${result.status}`);
       if (result.error) {
         console.log(`   Error: ${result.error}`);
       }
@@ -240,14 +238,14 @@ class SystemTester {
     console.log(`Success Rate: ${Math.round((passed / this.testResults.length) * 100)}%`);
 
     if (failed === 0) {
-      console.log('\n🎉 All tests passed! System is working correctly.');
+      console.log('\n All tests passed! System is working correctly.');
     } else {
-      console.log('\n⚠️  Some tests failed. Check the errors above.');
+      console.log('\n Some tests failed. Check the errors above.');
     }
   }
 
   async loadTestWebhooks() {
-    console.log('\n🔥 Running Load Test...');
+    console.log('\n Running Load Test...');
     const concurrentRequests = 10;
     const totalRequests = 100;
     const startTime = Date.now();
@@ -290,7 +288,7 @@ class SystemTester {
 
 // Interactive menu
 async function showMenu() {
-  console.log('\n🎮 GHL System Test Menu:');
+  console.log('\n GHL System Test Menu:');
   console.log('1. Run All Tests');
   console.log('2. Test Webhook Only');
   console.log('3. Load Test');
@@ -304,7 +302,7 @@ async function showMenu() {
 }
 
 async function main() {
-  console.log('🚀 GHL Multi-Location System Tester');
+  console.log(' GHL Multi-Location System Tester');
   console.log(`Testing against: ${BASE_URL}`);
   
   const tester = new SystemTester();
@@ -324,14 +322,14 @@ async function main() {
           await tester.loadTestWebhooks();
           break;
         case '4':
-          console.log('👋 Goodbye!');
+          console.log(' Goodbye!');
           rl.close();
           return;
         default:
-          console.log('❌ Invalid option. Please choose 1-4.');
+          console.log(' Invalid option. Please choose 1-4.');
       }
     } catch (error) {
-      console.log(`❌ Test error: ${error.message}`);
+      console.log(` Test error: ${error.message}`);
     }
 
     console.log('\nPress Enter to continue...');

@@ -1,4 +1,3 @@
-# start-dev.sh - Development start script
 #!/bin/bash
 
 echo "🔧 Starting GHL system in development mode..."
