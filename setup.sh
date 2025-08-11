@@ -6,8 +6,6 @@ echo "🚀 Setting up GHL Multi-Location System..."
 # Create directory structure
 mkdir -p logs
 mkdir -p database
-mkdir -p public/dashboard
-mkdir -p src/{modules/{webhooks,routing,analytics},utils,database/{models,migrations,seeds},routes,middleware,services}
 
 # Install dependencies
 echo "📦 Installing dependencies..."
