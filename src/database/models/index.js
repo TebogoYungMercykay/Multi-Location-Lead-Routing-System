@@ -234,6 +234,19 @@ class AnalyticsEvent extends BaseModel {
       }
     };
   }
+
+  static get relationMappings() {
+    return {
+      location: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Location,
+        join: {
+          from: 'analytics_events.location_id',
+          to: 'locations.id'
+        }
+      }
+    };
+  }
 }
 
 // Webhook Event Log Model
