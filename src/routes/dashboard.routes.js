@@ -1,6 +1,5 @@
-// src/routes/dashboard.routes.js
 const express = require('express');
-const routingService = require('../routing/routing.service');
+const routingService = require('../services/routing.service');
 const path = require('path');
 
 const router = express.Router();

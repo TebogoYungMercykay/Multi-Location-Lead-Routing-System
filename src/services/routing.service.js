@@ -1,4 +1,3 @@
-// src/routing/routing.service.js
 const geoUtils = require('../utils/geoUtils');
 const ghlApiClient = require('../utils/ghlApiClient');
 const logger = require('../utils/logger');
@@ -431,7 +430,6 @@ class RoutingService {
         error: error.message,
         updateData
       });
-      // Don't throw - this is non-critical for lead routing
     }
   }
 

@@ -1,4 +1,3 @@
-// src/database/connection.js
 const knex = require('knex');
 const path = require('path');
 const fs = require('fs').promises;

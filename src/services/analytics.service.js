@@ -1,4 +1,3 @@
-// src/analytics/analytics.service.js
 const { AnalyticsEvent } = require('../database/models');
 const logger = require('../utils/logger');
 

@@ -1,7 +1,5 @@
-// src/routes/analytics.routes.js
 const express = require('express');
-const analyticsService = require('../analytics/analytics.service');
-const { Location } = require('../database/models');
+const analyticsService = require('../services/analytics.service');
 
 const router = express.Router();
 

@@ -1,4 +1,3 @@
-// src/database/models/index.js
 const { Model } = require('objection');
 const knex = require('../connection').knex;
 

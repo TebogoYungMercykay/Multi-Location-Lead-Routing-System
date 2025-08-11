@@ -1,4 +1,3 @@
-// src/services/notification.service.js
 const axios = require('axios');
 const twilio = require('twilio');
 const logger = require('../utils/logger');
@@ -16,7 +15,7 @@ class NotificationService {
 
     try {
       const payload = {
-        text: `🚨 GHL System Alert: ${alertType}`,
+        text: `GHL System Alert: ${alertType}`,
         blocks: [
           {
             type: 'section',
@@ -48,7 +47,7 @@ class NotificationService {
   }
 
   async sendEmail({ to, subject, body }) {
-    // Mock email implementation - replace with your email service
+    // Mock email implementation - Might use emailjs
     logger.info('Email notification sent', { to, subject });
     return { success: true, provider: 'mock' };
   }

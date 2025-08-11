@@ -1,4 +1,3 @@
-// src/webhooks/webhook.service.js
 const { WebhookEventLog } = require('../database/models');
 const logger = require('../utils/logger');
 

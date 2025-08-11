@@ -1,7 +1,6 @@
-// src/routes/location.routes.js
 const express = require('express');
 const { Location, Lead } = require('../database/models');
-const routingService = require('../routing/routing.service');
+const routingService = require('../services/routing.service');
 
 const router = express.Router();
 

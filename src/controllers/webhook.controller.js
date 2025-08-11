@@ -1,8 +1,7 @@
-// src/webhooks/webhook.controller.js
 const webhookService = require('./webhook.service');
-const routingService = require('../routing/routing.service');
-const analyticsService = require('../analytics/analytics.service');
-const logger = require('../../utils/logger');
+const routingService = require('../services/routing.service');
+const analyticsService = require('../services/analytics.service');
+const logger = require('../utils/logger');
 
 class WebhookController {
   /**

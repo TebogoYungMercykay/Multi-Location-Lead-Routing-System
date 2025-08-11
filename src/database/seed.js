@@ -1,4 +1,3 @@
-// src/database/seed.js
 const { Location, LocationCapacity } = require('./models');
 const logger = require('../utils/logger');
 

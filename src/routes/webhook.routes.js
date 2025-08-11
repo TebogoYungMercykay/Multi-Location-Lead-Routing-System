@@ -1,6 +1,5 @@
-// src/routes/webhook.routes.js
 const express = require('express');
-const webhookController = require('../webhooks/webhook.controller');
+const webhookController = require('../controllers/webhook.controller');
 const { validateWebhookPayload } = require('../middleware/validation');
 const logger = require('../utils/logger');
 

@@ -1,4 +1,3 @@
-// src/utils/geoUtils.js
 const NodeGeocoder = require('node-geocoder');
 const logger = require('./logger');
 

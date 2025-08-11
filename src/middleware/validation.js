@@ -1,4 +1,3 @@
-// src/middleware/validation.js
 const Joi = require('joi');
 const logger = require('../utils/logger');
 
