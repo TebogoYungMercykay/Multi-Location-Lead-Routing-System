@@ -1,28 +1,28 @@
 #!/bin/bash
 
-echo "🚀 Setting up GHL Multi-Location System..."
+echo " > Setting up GHL Multi-Location System..."
 
 # Create directory structure
 mkdir -p logs
 mkdir -p database
 
 # Install dependencies
-echo "📦 Installing dependencies..."
+echo " > Installing dependencies..."
 npm install
 
 # Setup environment
 if [ ! -f .env ]; then
-    echo "📋 Creating .env file..."
+    echo " > Creating .env file..."
     cp .env.example .env || touch .env
-    echo "⚠️  Please update .env file with your actual credentials"
+    echo " > Please update .env file with your actual credentials"
 fi
 
 # Initialize database
-echo "🗄️  Setting up database..."
-npm run migrate 2>/dev/null || echo "Migration not needed"
+echo " > Setting up database..."
+npm run migrate 2>/dev/null || echo " > Migration not needed"
 npm run seed
 
-echo "✅ Setup complete!"
+echo "Setup complete!"
 echo ""
 echo "Next steps:"
 echo "1. Update your .env file with real credentials"
