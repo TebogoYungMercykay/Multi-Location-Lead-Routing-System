@@ -318,7 +318,7 @@ class WebhookController {
     //   .digest('hex');
     // return signature === expectedSignature;
     
-    return true; // Placeholder for development
+    return true;
   }
 
   /**
