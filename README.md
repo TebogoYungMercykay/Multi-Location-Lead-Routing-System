@@ -1,7 +1,6 @@
 # GHL Multi-Location Lead Routing System
 
-[![Watch the video](docs/images/read.png)](demo_video/demo.mp4)
-
+[![Watch the video](docs/images/read.png)](https://drive.google.com/drive/folders/1S4FDnQ219SgVkDtkFIWPj9uoTFOeWMe0?usp=sharing)
 
 > **Executive Summary**: This solution transforms GoHighLevel into an intelligent multi-location franchise management platform, automatically routing leads to optimal locations based on proximity, capacity, and business rules. Built to scale from 25 to 100+ locations while reducing manual lead management by 90% and improving conversion rates through intelligent routing and consistent follow-up.
 
@@ -25,9 +24,10 @@
 
 ## Documentation
 
-- **[Part 1: Technical Architecture](docs/1.%20technical-architecture.md)**
-- **[Part 2: The Scale Challenge Solution](docs/2.%20scaling-solution.md)**
-- **[Technical Decisions &amp; Trade-offs](docs/3.%20technical-decisions.md)**
+- LINK: **[DEMO VIDEO](https://drive.google.com/drive/folders/1S4FDnQ219SgVkDtkFIWPj9uoTFOeWMe0?usp=sharing)**
+- DOCS: **[Part 1: Technical Architecture](docs/1.%20technical-architecture.md)**
+- DOCS: **[Part 2: The Scale Challenge Solution](docs/2.%20scaling-solution.md)**
+- DOCS: **[Technical Decisions &amp; Trade-offs](docs/3.%20technical-decisions.md)**
 
 ## Architecture Overview
 
