@@ -226,7 +226,7 @@ class Dashboard {
 
     showError(message) {
         const container = document.getElementById('error-container');
-        container.innerHTML = `<div class="error">❌ ${message}</div>`;
+        container.innerHTML = `<div class="error">${message}</div>`;
         setTimeout(() => {
             container.innerHTML = '';
         }, 5000);
@@ -234,7 +234,7 @@ class Dashboard {
 
     showSuccess(message) {
         const container = document.getElementById('error-container');
-        container.innerHTML = `<div class="success">✅ ${message}</div>`;
+        container.innerHTML = `<div class="success">${message}</div>`;
         setTimeout(() => {
             container.innerHTML = '';
         }, 3000);
