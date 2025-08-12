@@ -182,8 +182,8 @@ class RoutingService {
           current_leads: 0,
           max_capacity: 100,
           utilization_rate: 0.0,
-          created_at: new Date(),
-          updated_at: new Date()
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
         });
         console.log(`Created capacity record for location ${locationId}`);
       }
@@ -260,10 +260,8 @@ class RoutingService {
     const selectedLocation = availableLocations[0];
     
     console.log("Location: ", selectedLocation);
-    logger.info("--- Debug --> Works 1 ----");
     // Update capacity tracking
     await this.updateLocationCapacity(selectedLocation.id, 1);
-    logger.info("--- Debug --> Works 2 ----");
 
     return selectedLocation;
   }
@@ -323,8 +321,8 @@ class RoutingService {
           capacityUtilization: selectedLocation.utilization_rate || 0,
           alternativeLocations: leadData.alternativeLocations || []
         },
-        created_at: new Date(),
-        updated_at: new Date()
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
       };
 
       await LeadRoutingLog.query(transaction).insert(routingLogData);
@@ -383,7 +381,7 @@ class RoutingService {
       const assignment = await this.executeAssignment(
         leadData, 
         overflowLocation, 
-        'no_capacity_overflow'
+        'fallback'
       );
 
       // Notify admin team
