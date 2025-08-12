@@ -41,19 +41,67 @@ flowchart LR
 
 ## API Endpoints
 
+**Postman Collection**: [docs/postman/test.postman_collection.json](docs/postman/test.postman_collection.json)
+
 ### Core Operations
 
-- `POST /api/webhooks/ghl` - Process GHL webhook events
-- `GET /api/locations` - List all locations with capacity
-- `POST /api/routing/assign` - Manually assign lead to location
-- `GET /api/analytics/dashboard` - Real-time performance metrics
+- `POST /api/locations/assign_lead` - Assign a single lead to a location using the routing algorithm
+- `POST /api/locations/assign_leads` - Bulk assign multiple leads using the routing algorithm
+- `GET /api/locations` - List all locations with their status, contact information, and availability
+- `GET /api/locations/{id}/leads` - Retrieve all leads assigned to a specific location
+- `GET /api/leads/assignments` - Retrieve all lead assignments made through the routing system
 
-### Management
+### Analytics & Monitoring
 
-- `POST /api/bulk/locations` - Bulk location onboarding
-- `GET /api/capacity/overview` - System-wide capacity status
-- `GET /api/reports/conversion` - Conversion rate analysis
-- `GET /health` - System health check
+- `GET /api/dashboard/routing-stats` - Get routing statistics and performance metrics
+- `GET /api/health` - System health check endpoint
+
+### Endpoint Details
+
+#### Lead Assignment
+
+- **Single Lead Assignment**
+  - **Method**: `POST`
+  - **Endpoint**: `/api/locations/assign_lead`
+  - **Description**: Assigns a single lead to a location using the routing algorithm
+  - **Content-Type**: `application/json`
+
+- **Bulk Lead Assignment**
+  - **Method**: `POST`
+  - **Endpoint**: `/api/locations/assign_leads`
+  - **Description**: Assigns multiple leads using the routing algorithm with individual success/failure status for each lead
+  - **Content-Type**: `application/json`
+
+#### Data Retrieval
+
+- **Get All Locations**
+   - **Method**: `GET`
+   - **Endpoint**: `/api/locations`
+   - **Description**: Fetches all locations with their status, contact information, and availability
+
+- **Get Location Leads**
+   - **Method**: `GET`
+   - **Endpoint**: `/api/locations/{id}/leads`
+   - **Description**: Retrieves all leads assigned to a specific location, ordered by creation date (newest first)
+
+- **Get Lead Assignments**
+   - **Method**: `GET`
+   - **Endpoint**: `/api/leads/assignments`
+   - **Description**: Retrieves all lead assignments made through the routing system, including assignment details, locations, and timestamps
+
+#### Dashboard & Analytics
+
+**Routing Statistics**
+- **Method**: `GET`
+- **Endpoint**: `/api/dashboard/routing-stats`
+- **Description**: Get routing statistics and performance metrics
+
+#### System Health
+
+**Health Check**
+- **Method**: `GET`
+- **Endpoint**: `/api/health`
+- **Description**: Health check endpoint to verify the API server is running properly
 
 ## Performance Metrics
 
