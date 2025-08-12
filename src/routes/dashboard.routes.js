@@ -15,7 +15,7 @@ router.get('/routing-stats', async (req, res) => {
 
 // Serve dashboard HTML
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/dashboard/index.html'));
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
 module.exports = router;
