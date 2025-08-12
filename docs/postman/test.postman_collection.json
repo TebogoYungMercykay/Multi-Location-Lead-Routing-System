@@ -151,7 +151,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"assigned_location_id\": \"loc_chi_001\",\n    \"first_name\": \"Mike\",\n    \"last_name\": \"Johnson\",\n    \"email\": \"mike.johnson@email.com\",\n    \"phone\": \"(555) 333-4444\",\n    \"zip_code\": \"60601\",\n    \"source\": \"website_form\",\n    \"utm_source\": \"organic\",\n    \"utm_campaign\": \"direct\",\n    \"utm_medium\": \"website\",\n    \"ghl_contact_id\": \"contact_003\",\n    \"lead_score\": 91,\n    \"status\": \"converted\",\n    \"metadata\": {\n        \"interests\": [\"crossfit\", \"strength_training\"],\n        \"preferred_time\": \"afternoon\",\n        \"budget_range\": \"$100-200\"\n    }\n}"
+							"raw": "{\n    \"assigned_location_id\": \"loc_ny_001\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe@email.com\",\n    \"phone\": \"(555) 111-2222\",\n    \"zip_code\": \"10001\",\n    \"source\": \"facebook_ads\",\n    \"utm_source\": \"facebook\",\n    \"utm_campaign\": \"spring_promotion\",\n    \"utm_medium\": \"social\",\n    \"ghl_contact_id\": \"contact_001\",\n    \"lead_score\": 85,\n    \"status\": \"qualified\",\n    \"metadata\": {\n    \"interests\": [\"weight_training\", \"cardio\"],\n    \"preferred_time\": \"evening\",\n    \"budget_range\": \"$50-100\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/locations/assign_lead",
@@ -565,7 +565,8 @@
 							"    pm.expect(jsonData.status).to.equal('healthy');",
 							"});"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -578,12 +579,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/api/health",
+					"raw": "{{base_url}}/health",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"api",
 						"health"
 					]
 				},
@@ -619,6 +619,28 @@
 					"body": "{\n    \"success\": true,\n    \"status\": \"healthy\",\n    \"uptime\": 12345.67,\n    \"timestamp\": \"2024-01-15T10:30:00.000Z\"\n}"
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"variable": [
