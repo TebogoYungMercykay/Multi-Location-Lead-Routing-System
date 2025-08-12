@@ -68,6 +68,14 @@ class Location extends BaseModel {
           from: 'locations.id',
           to: 'location_capacity.location_id'
         }
+      },
+      routingLogs: {
+        relation: Model.HasManyRelation,
+        modelClass: LeadRoutingLog,
+        join: {
+          from: 'locations.id',
+          to: 'lead_routing_logs.assigned_location_id'
+        }
       }
     };
   }
@@ -118,6 +126,14 @@ class Lead extends BaseModel {
           to: 'locations.id'
         }
       },
+      backupLocation: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Location,
+        join: {
+          from: 'leads.backup_location_id',
+          to: 'locations.id'
+        }
+      },
       routingLogs: {
         relation: Model.HasManyRelation,
         modelClass: LeadRoutingLog,
@@ -143,13 +159,15 @@ class LeadRoutingLog extends BaseModel {
       properties: {
         id: { type: 'string' },
         lead_id: { type: 'string' },
-        original_location_id: { type: 'string' },
         assigned_location_id: { type: 'string' },
         routing_reason: { 
           type: 'string',
-          enum: ['optimal_match', 'no_capacity_overflow', 'fallback_routing', 'manual_reassignment']
+          enum: ['optimal_match', 'capacity_based', 'geographic', 'fallback', 'manual_assignment']
         },
-        routing_data: { type: 'object' }
+        routing_score: { type: 'number' },
+        metadata: { type: 'object' },
+        created_at: { type: 'string', format: 'date-time' },
+        updated_at: { type: 'string', format: 'date-time' }
       }
     };
   }
@@ -164,7 +182,7 @@ class LeadRoutingLog extends BaseModel {
           to: 'leads.id'
         }
       },
-      location: {
+      assignedLocation: {
         relation: Model.BelongsToOneRelation,
         modelClass: Location,
         join: {
