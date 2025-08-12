@@ -1,0 +1,13 @@
+
+# MUSIC
+
+Title: A Prayer for George
+Artist: Matt Large
+Year: 2020
+Album: A Wasteland Fairytale
+
+# EDITING TOOL
+
+Name: Kdenlive
+Version: 23.04.3
+Website: https://kdenlive.org

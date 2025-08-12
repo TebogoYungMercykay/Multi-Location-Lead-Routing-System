@@ -1,6 +1,7 @@
 # GHL Multi-Location Lead Routing System
 
-<img src="docs/images/read.png" style="width: 100%; height: 40%;" />
+[![Watch the video](docs/images/read.png)](demo_video/demo.mp4)
+
 
 > **Executive Summary**: This solution transforms GoHighLevel into an intelligent multi-location franchise management platform, automatically routing leads to optimal locations based on proximity, capacity, and business rules. Built to scale from 25 to 100+ locations while reducing manual lead management by 90% and improving conversion rates through intelligent routing and consistent follow-up.
 
@@ -61,12 +62,13 @@ flowchart LR
 #### Lead Assignment
 
 - **Single Lead Assignment**
+
   - **Method**: `POST`
   - **Endpoint**: `/api/locations/assign_lead`
   - **Description**: Assigns a single lead to a location using the routing algorithm
   - **Content-Type**: `application/json`
-
 - **Bulk Lead Assignment**
+
   - **Method**: `POST`
   - **Endpoint**: `/api/locations/assign_leads`
   - **Description**: Assigns multiple leads using the routing algorithm with individual success/failure status for each lead
@@ -75,23 +77,25 @@ flowchart LR
 #### Data Retrieval
 
 - **Get All Locations**
-   - **Method**: `GET`
-   - **Endpoint**: `/api/locations`
-   - **Description**: Fetches all locations with their status, contact information, and availability
 
+  - **Method**: `GET`
+  - **Endpoint**: `/api/locations`
+  - **Description**: Fetches all locations with their status, contact information, and availability
 - **Get Location Leads**
-   - **Method**: `GET`
-   - **Endpoint**: `/api/locations/{id}/leads`
-   - **Description**: Retrieves all leads assigned to a specific location, ordered by creation date (newest first)
 
+  - **Method**: `GET`
+  - **Endpoint**: `/api/locations/{id}/leads`
+  - **Description**: Retrieves all leads assigned to a specific location, ordered by creation date (newest first)
 - **Get Lead Assignments**
-   - **Method**: `GET`
-   - **Endpoint**: `/api/leads/assignments`
-   - **Description**: Retrieves all lead assignments made through the routing system, including assignment details, locations, and timestamps
+
+  - **Method**: `GET`
+  - **Endpoint**: `/api/leads/assignments`
+  - **Description**: Retrieves all lead assignments made through the routing system, including assignment details, locations, and timestamps
 
 #### Dashboard & Analytics
 
 **Routing Statistics**
+
 - **Method**: `GET`
 - **Endpoint**: `/api/dashboard/routing-stats`
 - **Description**: Get routing statistics and performance metrics
@@ -99,6 +103,7 @@ flowchart LR
 #### System Health
 
 **Health Check**
+
 - **Method**: `GET`
 - **Endpoint**: `/api/health`
 - **Description**: Health check endpoint to verify the API server is running properly
@@ -131,6 +136,9 @@ flowchart LR
    # Manual Setup
    mkdir -p logs
    mkdir -p database
+
+   npm run db:init
+   npm run db:verify
 
    npm install
    npm run dev
