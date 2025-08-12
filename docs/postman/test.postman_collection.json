@@ -1,0 +1,631 @@
+{
+	"info": {
+		"_postman_id": "a411afed-3139-41e6-bb69-8e5c52088aca",
+		"name": "Dashboard API Collection",
+		"description": "API endpoints for the dashboard application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22727224",
+		"_collection_link": "https://grey-meadow-982640.postman.co/workspace/GHL_Test~21a0901f-547f-40d2-89f6-de8ce3c7eb10/collection/22727224-a411afed-3139-41e6-bb69-8e5c52088aca?action=share&source=collection_link&creator=22727224"
+	},
+	"item": [
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Assign Leads",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has success field\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('success');",
+									"});",
+									"",
+									"pm.test(\"Response has summary with assignment stats\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('summary');",
+									"    pm.expect(jsonData.summary).to.have.property('totalProcessed');",
+									"    pm.expect(jsonData.summary).to.have.property('successful');",
+									"    pm.expect(jsonData.summary).to.have.property('successRate');",
+									"});",
+									"",
+									"pm.test(\"Has assignment results\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('results');",
+									"    pm.expect(jsonData.results).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"leads\": [\n    {\n      \"assigned_location_id\": \"loc_ny_001\",\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\",\n      \"email\": \"john.doe@email.com\",\n      \"phone\": \"(555) 111-2222\",\n      \"zip_code\": \"10001\",\n      \"source\": \"facebook_ads\",\n      \"utm_source\": \"facebook\",\n      \"utm_campaign\": \"spring_promotion\",\n      \"utm_medium\": \"social\",\n      \"ghl_contact_id\": \"contact_001\",\n      \"lead_score\": 85,\n      \"status\": \"qualified\",\n      \"metadata\": {\n        \"interests\": [\"weight_training\", \"cardio\"],\n        \"preferred_time\": \"evening\",\n        \"budget_range\": \"$50-100\"\n      }\n    },\n    {\n      \"assigned_location_id\": \"loc_la_001\",\n      \"first_name\": \"Jane\",\n      \"last_name\": \"Smith\",\n      \"email\": \"jane.smith@email.com\",\n      \"phone\": \"(555) 222-3333\",\n      \"zip_code\": \"90210\",\n      \"source\": \"google_ads\",\n      \"utm_source\": \"google\",\n      \"utm_campaign\": \"fitness_goals\",\n      \"utm_medium\": \"search\",\n      \"ghl_contact_id\": \"contact_002\",\n      \"lead_score\": 72,\n      \"status\": \"contacted\",\n      \"metadata\": {\n        \"interests\": [\"yoga\", \"pilates\"],\n        \"preferred_time\": \"morning\",\n        \"budget_range\": \"$75-150\"\n      }\n    },\n    {\n      \"assigned_location_id\": \"loc_chi_001\",\n      \"first_name\": \"Mike\",\n      \"last_name\": \"Johnson\",\n      \"email\": \"mike.johnson@email.com\",\n      \"phone\": \"(555) 333-4444\",\n      \"zip_code\": \"60601\",\n      \"source\": \"website_form\",\n      \"utm_source\": \"organic\",\n      \"utm_campaign\": \"direct\",\n      \"utm_medium\": \"website\",\n      \"ghl_contact_id\": \"contact_003\",\n      \"lead_score\": 91,\n      \"status\": \"converted\",\n      \"metadata\": {\n        \"interests\": [\"crossfit\", \"strength_training\"],\n        \"preferred_time\": \"afternoon\",\n        \"budget_range\": \"$100-200\"\n      }\n    },\n    {\n      \"assigned_location_id\": \"loc_miami_001\",\n      \"first_name\": \"Sarah\",\n      \"last_name\": \"Wilson\",\n      \"email\": \"sarah.wilson@email.com\",\n      \"phone\": \"(555) 444-5555\",\n      \"zip_code\": \"33139\",\n      \"source\": \"instagram_ads\",\n      \"utm_source\": \"instagram\",\n      \"utm_campaign\": \"summer_body\",\n      \"utm_medium\": \"social\",\n      \"ghl_contact_id\": \"contact_004\",\n      \"lead_score\": 68,\n      \"status\": \"new\",\n      \"metadata\": {\n        \"interests\": [\"dance_fitness\", \"nutrition\"],\n        \"preferred_time\": \"evening\",\n        \"budget_range\": \"$40-80\"\n      }\n    },\n    {\n      \"assigned_location_id\": \"loc_dallas_001\",\n      \"first_name\": \"David\",\n      \"last_name\": \"Brown\",\n      \"email\": \"david.brown@email.com\",\n      \"phone\": \"(555) 555-6666\",\n      \"zip_code\": \"75201\",\n      \"source\": \"referral\",\n      \"utm_source\": \"referral\",\n      \"utm_campaign\": \"member_referral\",\n      \"utm_medium\": \"word_of_mouth\",\n      \"ghl_contact_id\": \"contact_005\",\n      \"lead_score\": 88,\n      \"status\": \"assigned\",\n      \"metadata\": {\n        \"interests\": [\"personal_training\", \"nutrition_coaching\"],\n        \"preferred_time\": \"morning\",\n        \"budget_range\": \"$150-300\",\n        \"referrer\": \"Mike Johnson\"\n      }\n    },\n    {\n      \"assigned_location_id\": \"loc_ny_001\",\n      \"first_name\": \"Emily\",\n      \"last_name\": \"Davis\",\n      \"email\": \"emily.davis@email.com\",\n      \"phone\": \"(555) 666-7777\",\n      \"zip_code\": \"10001\",\n      \"source\": \"facebook_ads\",\n      \"utm_source\": \"facebook\",\n      \"utm_campaign\": \"new_year_resolution\",\n      \"utm_medium\": \"social\",\n      \"ghl_contact_id\": \"contact_006\",\n      \"lead_score\": 55,\n      \"status\": \"lost\",\n      \"metadata\": {\n        \"interests\": [\"group_classes\"],\n        \"preferred_time\": \"weekend\",\n        \"budget_range\": \"$30-60\",\n        \"loss_reason\": \"price_sensitive\"\n      }\n    },\n    {\n      \"assigned_location_id\": \"loc_la_001\",\n      \"first_name\": \"Chris\",\n      \"last_name\": \"Martinez\",\n      \"email\": \"chris.martinez@email.com\",\n      \"phone\": \"(555) 777-8888\",\n      \"zip_code\": \"90210\",\n      \"source\": \"google_ads\",\n      \"utm_source\": \"google\",\n      \"utm_campaign\": \"local_fitness\",\n      \"utm_medium\": \"search\",\n      \"ghl_contact_id\": \"contact_007\",\n      \"lead_score\": 79,\n      \"status\": \"qualified\",\n      \"metadata\": {\n        \"interests\": [\"swimming\", \"triathlon_training\"],\n        \"preferred_time\": \"early_morning\",\n        \"budget_range\": \"$80-120\"\n      }\n    }\n  ]\n}\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/locations/assign_leads",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"locations",
+								"assign_leads"
+							]
+						},
+						"description": "Assigns the predefined sample fitness leads using the routing algorithm. This includes leads from different sources (Facebook, Google, Instagram, referrals) with various zip codes and lead scores."
+					},
+					"response": [
+						{
+							"name": "Sample Assignment Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/leads/assign-sample",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"leads",
+										"assign-sample"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Sample leads assigned successfully\",\n    \"summary\": {\n        \"totalProcessed\": 7,\n        \"successful\": 7,\n        \"failed\": 0,\n        \"successRate\": \"100.0%\"\n    },\n    \"results\": [\n        {\n            \"leadName\": \"John Doe\",\n            \"zipCode\": \"10001\",\n            \"source\": \"facebook_ads\",\n            \"assignedTo\": \"New York Office\",\n            \"distance\": 2.1,\n            \"reason\": \"optimal_match\"\n        },\n        {\n            \"leadName\": \"Jane Smith\",\n            \"zipCode\": \"90210\",\n            \"source\": \"google_ads\",\n            \"assignedTo\": \"Los Angeles Office\",\n            \"distance\": 8.3,\n            \"reason\": \"optimal_match\"\n        }\n    ],\n    \"errors\": [],\n    \"timestamp\": \"2024-01-15T10:30:00.000Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Assign Lead",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has success field\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('success');",
+									"});",
+									"",
+									"pm.test(\"Response has summary with bulk assignment stats\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('summary');",
+									"    pm.expect(jsonData.summary).to.have.property('totalProcessed');",
+									"    pm.expect(jsonData.summary).to.have.property('successful');",
+									"    pm.expect(jsonData.summary).to.have.property('failed');",
+									"    pm.expect(jsonData.summary).to.have.property('successRate');",
+									"});",
+									"",
+									"pm.test(\"Has results and errors arrays\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('results');",
+									"    pm.expect(jsonData).to.have.property('errors');",
+									"    pm.expect(jsonData.results).to.be.an('array');",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assigned_location_id\": \"loc_chi_001\",\n    \"first_name\": \"Mike\",\n    \"last_name\": \"Johnson\",\n    \"email\": \"mike.johnson@email.com\",\n    \"phone\": \"(555) 333-4444\",\n    \"zip_code\": \"60601\",\n    \"source\": \"website_form\",\n    \"utm_source\": \"organic\",\n    \"utm_campaign\": \"direct\",\n    \"utm_medium\": \"website\",\n    \"ghl_contact_id\": \"contact_003\",\n    \"lead_score\": 91,\n    \"status\": \"converted\",\n    \"metadata\": {\n        \"interests\": [\"crossfit\", \"strength_training\"],\n        \"preferred_time\": \"afternoon\",\n        \"budget_range\": \"$100-200\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/locations/assign_lead",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"locations",
+								"assign_lead"
+							]
+						},
+						"description": "Bulk assigns multiple leads using the routing algorithm. Each lead is processed individually and the results are returned with success/failure status for each lead."
+					},
+					"response": [
+						{
+							"name": "Bulk Assignment Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"leads\": [\n        {\n            \"first_name\": \"Alex\",\n            \"last_name\": \"Johnson\",\n            \"phone\": \"+1 (555) 999-0000\",\n            \"zip_code\": \"10001\",\n            \"source\": \"facebook_ads\",\n            \"lead_score\": 75\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/leads/assign-bulk",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"leads",
+										"assign-bulk"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"summary\": {\n        \"totalProcessed\": 2,\n        \"successful\": 2,\n        \"failed\": 0,\n        \"successRate\": \"100.0%\"\n    },\n    \"results\": [\n        {\n            \"originalLead\": {\n                \"first_name\": \"Alex\",\n                \"last_name\": \"Johnson\",\n                \"zip_code\": \"10001\",\n                \"source\": \"facebook_ads\"\n            },\n            \"assignment\": {\n                \"leadId\": 1642345678902,\n                \"locationId\": 1,\n                \"locationName\": \"New York Office\",\n                \"reason\": \"optimal_match\",\n                \"distance\": 3.2\n            },\n            \"status\": \"success\"\n        }\n    ],\n    \"errors\": [],\n    \"timestamp\": \"2024-01-15T10:30:00.000Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Routing Stats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has success field\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('success');",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response has status healthy\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('status');",
+									"    pm.expect(jsonData.status).to.equal('healthy');",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/routing-stats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"routing-stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lead Assignments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has success field\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('success');",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response has assignments array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('assignments');",
+									"    pm.expect(jsonData.assignments).to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"Each assignment has required fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.assignments.length > 0) {",
+									"        jsonData.assignments.forEach(function(assignment) {",
+									"            pm.expect(assignment).to.have.property('leadId');",
+									"            pm.expect(assignment).to.have.property('leadName');",
+									"            pm.expect(assignment).to.have.property('assignedLocation');",
+									"            pm.expect(assignment).to.have.property('assignedAt');",
+									"        });",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/leads/assignments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"leads",
+								"assignments"
+							]
+						},
+						"description": "Retrieves all lead assignments that have been made through the routing system, including assignment details, locations, and timestamps."
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/leads/assignments",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"leads",
+										"assignments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"assignments\": [\n        {\n            \"leadId\": 1642345678901,\n            \"leadName\": \"John Doe\",\n            \"email\": \"john.doe@email.com\",\n            \"phone\": \"(555) 111-2222\",\n            \"zipCode\": \"10001\",\n            \"source\": \"facebook_ads\",\n            \"leadScore\": 85,\n            \"assignedLocation\": {\n                \"id\": 1,\n                \"code\": \"loc_ny_001\",\n                \"name\": \"New York Office\"\n            },\n            \"assignedAt\": \"2024-01-15T10:00:00.000Z\"\n        }\n    ],\n    \"count\": 1,\n    \"timestamp\": \"2024-01-15T10:30:00.000Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Location Leads",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has success field\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('success');",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response has leads array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('leads');",
+									"    pm.expect(jsonData.leads).to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"Each lead has required fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.leads.length > 0) {",
+									"        jsonData.leads.forEach(function(lead) {",
+									"            pm.expect(lead).to.have.property('id');",
+									"            pm.expect(lead).to.have.property('firstName');",
+									"            pm.expect(lead).to.have.property('lastName');",
+									"            pm.expect(lead).to.have.property('assignedLocationId');",
+									"        });",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/locations/1/leads",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"locations",
+								"1",
+								"leads"
+							]
+						},
+						"description": "Retrieves all leads assigned to a specific location, ordered by creation date (newest first)."
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/locations/1/leads",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"locations",
+										"1",
+										"leads"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"leads\": [\n        {\n            \"id\": 1642345678901,\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\",\n            \"email\": \"john@example.com\",\n            \"phone\": \"+1 555-1234\",\n            \"zipCode\": \"10001\",\n            \"source\": \"website\",\n            \"leadScore\": 85,\n            \"status\": \"new\",\n            \"assignedLocationId\": 1,\n            \"createdAt\": \"2024-01-15T10:00:00.000Z\"\n        }\n    ],\n    \"locationName\": \"New York Office\",\n    \"count\": 1,\n    \"timestamp\": \"2024-01-15T10:30:00.000Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has success field\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('success');",
+									"    pm.expect(jsonData.success).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response has locations array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('locations');",
+									"    pm.expect(jsonData.locations).to.be.an('array');",
+									"    pm.expect(jsonData.locations.length).to.be.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Each location has required fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.locations.forEach(function(location) {",
+									"        pm.expect(location).to.have.property('id');",
+									"        pm.expect(location).to.have.property('name');",
+									"        pm.expect(location).to.have.property('active');",
+									"        pm.expect(location).to.have.property('address');",
+									"        pm.expect(location).to.have.property('phone');",
+									"        pm.expect(location.active).to.be.a('boolean');",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Count matches locations array length\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.count).to.equal(jsonData.locations.length);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/locations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"locations"
+							]
+						},
+						"description": "Fetches all locations with their status, contact information, and availability."
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/locations",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"locations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"locations\": [\n        {\n            \"id\": 1,\n            \"name\": \"New York Office\",\n            \"active\": true,\n            \"address\": \"123 Broadway, NY 10001\",\n            \"phone\": \"+1 (555) 123-4567\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Los Angeles Office\",\n            \"active\": true,\n            \"address\": \"456 Sunset Blvd, LA 90028\",\n            \"phone\": \"+1 (555) 234-5678\"\n        }\n    ],\n    \"count\": 6,\n    \"timestamp\": \"2024-01-15T10:30:00.000Z\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has success field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('success');",
+							"    pm.expect(jsonData.success).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Response has status healthy\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData.status).to.equal('healthy');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"health"
+					]
+				},
+				"description": "Health check endpoint to verify the API server is running properly."
+			},
+			"response": [
+				{
+					"name": "Healthy Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"status\": \"healthy\",\n    \"uptime\": 12345.67,\n    \"timestamp\": \"2024-01-15T10:30:00.000Z\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
