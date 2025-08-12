@@ -29,6 +29,7 @@
     "node-cron": "^3.0.2",
     "node-geocoder": "^4.2.0",
     "objection": "^3.1.1",
+    "pg": "^8.16.3",
     "sqlite3": "^5.1.6",
     "twilio": "^4.15.0",
     "winston": "^3.10.0"

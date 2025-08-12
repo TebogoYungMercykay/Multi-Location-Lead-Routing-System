@@ -10,6 +10,8 @@ fi
 
 # Ensure logs directory exists
 mkdir -p logs
+npm run db:init
+npm run db:verify
 
 # Start development server with nodemon
 echo " > Starting server on port ${PORT:-3000}..."
