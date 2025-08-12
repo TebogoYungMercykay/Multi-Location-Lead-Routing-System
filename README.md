@@ -8,7 +8,7 @@
 
 - **90% Reduction** in manual lead routing and assignment
 - **35% Improvement** in lead response times through automation
-- **Real-time Visibility** across all locations from central dashboard  
+- **Real-time Visibility** across all locations from central dashboard
 - **Scalable Architecture** supports 4x growth without system changes
 - **Data-Driven Insights** for franchise performance optimization
 
@@ -26,7 +26,7 @@
 
 - **[Part 1: Technical Architecture](docs/1.%20technical-architecture.md)**
 - **[Part 2: The Scale Challenge Solution](docs/2.%20scaling-solution.md)**
-- **[Technical Decisions & Trade-offs](docs/3.%20technical-decisions.md)**
+- **[Technical Decisions &amp; Trade-offs](docs/3.%20technical-decisions.md)**
 
 ## Architecture Overview
 
@@ -58,10 +58,9 @@ flowchart LR
 ## Performance Metrics
 
 - **Lead Processing**: 500+ leads/minute
-- **Response Time**: <200ms for routing decisions  
+- **Response Time**: <200ms for routing decisions
 - **Uptime**: 99.9% availability target
 - **Scalability**: Supports 100+ locations, 10,000+ leads/day
-
 
 ## Quick Start
 
@@ -78,25 +77,28 @@ flowchart LR
 1. **Clone and Install**
 
    ```bash
-   git clone <repository-url>
-   cd ghl-franchise-system
+   # using Script
    chmod +x setup.sh && ./setup.sh
-   ```
 
+   # Manual Setup
+   mkdir -p logs
+   mkdir -p database
+
+   npm install
+   npm run dev
+   ```
 2. **Configure Environment**
 
    ```bash
    cp .env.example .env
    # Edit .env with your GHL credentials and API keys
    ```
-
 3. **Start Services**
 
    ```bash
    docker-compose up -d postgres redis
    npm run dev
    ```
-
 4. **Verify Setup**
 
    ```bash
@@ -246,7 +248,7 @@ Access real-time metrics at `http://localhost:3000/dashboard`
 ### Scaling Components
 
 - **Horizontal Scaling**: Load balancers + multiple app instances
-- **Database Scaling**: Read replicas + connection pooling  
+- **Database Scaling**: Read replicas + connection pooling
 - **Cache Scaling**: Redis cluster for distributed caching
 - **Queue Scaling**: Multiple queue workers for high throughput
 
